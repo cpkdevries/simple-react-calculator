@@ -33,16 +33,28 @@ var SimpleCalculator = React.createClass({
     this.refs.inputResult.setState({value: ""});
   },
   render : function() {
+    var buttonStyle = {
+      width: "100%"
+    };
+    var panelHeader = {
+      background: "#add8e6"
+    };
+    var panelBody = {
+      background: "#d3d3d3"
+    };
+    var panel = {
+      boxShadow: "5px 5px 5px #000"
+    };
     return (
-      <div className="panel panel-default">
+      <div style={panel} className="panel panel-default">
         <div className="row">
           <div className="col-sm-12">
-            <div className="panel-heading text-center">
+            <div style={panelHeader} className="panel-heading text-center">
               <Heading headingText="Simple Calculator" />
             </div>
           </div>
         </div>
-        <div className="panel-body">
+        <div style={panelBody} className="panel-body">
           <div className="row">
             <div className="col-sm-6">
               <InputBox inputType="number" placeholder="NUMBER e.g. 1337" ref="inputNumA" />
@@ -53,16 +65,16 @@ var SimpleCalculator = React.createClass({
           </div><br />
           <div className="row">
             <div className="col-sm-3">
-              <button className="btn btn-success" value="add" onClick={this.onClick}>+ Add</button>
+              <button style={buttonStyle} className="btn btn-success" value="add" onClick={this.onClick}>+ Add</button>
             </div>
             <div className="col-sm-3">
-              <button className="btn btn-success" value="subtract" onClick={this.onClick}>- Subtract</button>
+              <button style={buttonStyle} className="btn btn-success" value="subtract" onClick={this.onClick}>- Subtract</button>
             </div>
             <div className="col-sm-3">
-              <button className="btn btn-success" value="multiply" onClick={this.onClick}>* Multiply</button>
+              <button style={buttonStyle} className="btn btn-success" value="multiply" onClick={this.onClick}>* Multiply</button>
             </div>
             <div className="col-sm-3">
-              <button className="btn btn-success" value="divide" onClick={this.onClick}>/ Divide</button>
+              <button style={buttonStyle} className="btn btn-success" value="divide" onClick={this.onClick}>/ Divide</button>
             </div>
           </div><br />
           <div className="row">
@@ -70,7 +82,7 @@ var SimpleCalculator = React.createClass({
               <InputBox inputType="number" placeholder="Result" ref="inputResult" readOnly="true"/>
             </div>
             <div className="col-sm-3">
-              <button onClick={this.clear} className="btn btn-danger">Clear</button>
+              <button style={buttonStyle} onClick={this.clear} className="btn btn-danger">Clear</button>
             </div>
           </div>
         </div>

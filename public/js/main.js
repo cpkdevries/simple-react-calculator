@@ -19103,9 +19103,21 @@ var SimpleCalculator = React.createClass({
     this.refs.inputResult.setState({ value: "" });
   },
   render: function () {
+    var buttonStyle = {
+      width: "100%"
+    };
+    var panelHeader = {
+      background: "#add8e6"
+    };
+    var panelBody = {
+      background: "#d3d3d3"
+    };
+    var panel = {
+      boxShadow: "5px 5px 5px #000"
+    };
     return React.createElement(
       'div',
-      { className: 'panel panel-default' },
+      { style: panel, className: 'panel panel-default' },
       React.createElement(
         'div',
         { className: 'row' },
@@ -19114,14 +19126,14 @@ var SimpleCalculator = React.createClass({
           { className: 'col-sm-12' },
           React.createElement(
             'div',
-            { className: 'panel-heading text-center' },
+            { style: panelHeader, className: 'panel-heading text-center' },
             React.createElement(Heading, { headingText: 'Simple Calculator' })
           )
         )
       ),
       React.createElement(
         'div',
-        { className: 'panel-body' },
+        { style: panelBody, className: 'panel-body' },
         React.createElement(
           'div',
           { className: 'row' },
@@ -19145,7 +19157,7 @@ var SimpleCalculator = React.createClass({
             { className: 'col-sm-3' },
             React.createElement(
               'button',
-              { className: 'btn btn-success', value: 'add', onClick: this.onClick },
+              { style: buttonStyle, className: 'btn btn-success', value: 'add', onClick: this.onClick },
               '+ Add'
             )
           ),
@@ -19154,7 +19166,7 @@ var SimpleCalculator = React.createClass({
             { className: 'col-sm-3' },
             React.createElement(
               'button',
-              { className: 'btn btn-success', value: 'subtract', onClick: this.onClick },
+              { style: buttonStyle, className: 'btn btn-success', value: 'subtract', onClick: this.onClick },
               '- Subtract'
             )
           ),
@@ -19163,7 +19175,7 @@ var SimpleCalculator = React.createClass({
             { className: 'col-sm-3' },
             React.createElement(
               'button',
-              { className: 'btn btn-success', value: 'multiply', onClick: this.onClick },
+              { style: buttonStyle, className: 'btn btn-success', value: 'multiply', onClick: this.onClick },
               '* Multiply'
             )
           ),
@@ -19172,7 +19184,7 @@ var SimpleCalculator = React.createClass({
             { className: 'col-sm-3' },
             React.createElement(
               'button',
-              { className: 'btn btn-success', value: 'divide', onClick: this.onClick },
+              { style: buttonStyle, className: 'btn btn-success', value: 'divide', onClick: this.onClick },
               '/ Divide'
             )
           )
@@ -19191,7 +19203,7 @@ var SimpleCalculator = React.createClass({
             { className: 'col-sm-3' },
             React.createElement(
               'button',
-              { onClick: this.clear, className: 'btn btn-danger' },
+              { style: buttonStyle, onClick: this.clear, className: 'btn btn-danger' },
               'Clear'
             )
           )
