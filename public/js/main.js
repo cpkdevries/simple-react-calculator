@@ -19026,6 +19026,189 @@ module.exports = require('./lib/React');
 
 },{"./lib/React":53}],159:[function(require,module,exports){
 var React = require('react');
+
+var Heading = React.createClass({
+  displayName: 'Heading',
+
+  render: function () {
+    return React.createElement(
+      'h1',
+      null,
+      this.props.headingText
+    );
+  }
+});
+
+module.exports = Heading;
+
+},{"react":158}],160:[function(require,module,exports){
+var React = require('react');
+
+var InputBox = React.createClass({
+  displayName: "InputBox",
+
+  getInitialState: function () {
+    if (this.props.inputType === "number") {
+      return { value: "" };
+    } else {
+      return { value: "" };
+    }
+  },
+  onChange: function (e) {
+    this.setState({ value: e.target.value });
+  },
+  render: function () {
+    return React.createElement("input", { type: this.props.inputType, className: "form-control", onChange: this.onChange, placeholder: this.props.placeholder, value: this.state.value, readOnly: this.props.readOnly });
+  }
+});
+
+module.exports = InputBox;
+
+},{"react":158}],161:[function(require,module,exports){
+var React = require('react');
+
+var Heading = require('./Heading.jsx');
+var InputBox = require('./InputBox.jsx');
+
+var SimpleCalculator = React.createClass({
+  displayName: 'SimpleCalculator',
+
+  onClick: function (e) {
+    if (!this.refs.inputNumA.state.value || !this.refs.inputNumB.state.value) {
+      alert("I need two numbers to do math you know!");
+    } else {
+      // we have a number, get doing stuff!
+      var operation = e.target.value;
+      var numA = parseInt(this.refs.inputNumA.state.value);
+      var numB = parseInt(this.refs.inputNumB.state.value);
+      switch (operation) {
+        case "add":
+          this.refs.inputResult.setState({ value: numA + numB });
+          break;
+        case "subtract":
+          this.refs.inputResult.setState({ value: numA - numB });
+          break;
+        case "multiply":
+          this.refs.inputResult.setState({ value: numA * numB });
+          break;
+        case "divide":
+          this.refs.inputResult.setState({ value: numA / numB });
+          break;
+      }
+    }
+  },
+  clear: function () {
+    this.refs.inputNumA.setState({ value: "" });
+    this.refs.inputNumB.setState({ value: "" });
+    this.refs.inputResult.setState({ value: "" });
+  },
+  render: function () {
+    return React.createElement(
+      'div',
+      { className: 'panel panel-default' },
+      React.createElement(
+        'div',
+        { className: 'row' },
+        React.createElement(
+          'div',
+          { className: 'col-sm-12' },
+          React.createElement(
+            'div',
+            { className: 'panel-heading text-center' },
+            React.createElement(Heading, { headingText: 'Simple Calculator' })
+          )
+        )
+      ),
+      React.createElement(
+        'div',
+        { className: 'panel-body' },
+        React.createElement(
+          'div',
+          { className: 'row' },
+          React.createElement(
+            'div',
+            { className: 'col-sm-6' },
+            React.createElement(InputBox, { inputType: 'number', placeholder: 'NUMBER e.g. 1337', ref: 'inputNumA' })
+          ),
+          React.createElement(
+            'div',
+            { className: 'col-sm-6' },
+            React.createElement(InputBox, { inputType: 'number', placeholder: 'NUMBER e.g. 2108', ref: 'inputNumB' })
+          )
+        ),
+        React.createElement('br', null),
+        React.createElement(
+          'div',
+          { className: 'row' },
+          React.createElement(
+            'div',
+            { className: 'col-sm-3' },
+            React.createElement(
+              'button',
+              { className: 'btn btn-success', value: 'add', onClick: this.onClick },
+              '+ Add'
+            )
+          ),
+          React.createElement(
+            'div',
+            { className: 'col-sm-3' },
+            React.createElement(
+              'button',
+              { className: 'btn btn-success', value: 'subtract', onClick: this.onClick },
+              '- Subtract'
+            )
+          ),
+          React.createElement(
+            'div',
+            { className: 'col-sm-3' },
+            React.createElement(
+              'button',
+              { className: 'btn btn-success', value: 'multiply', onClick: this.onClick },
+              '* Multiply'
+            )
+          ),
+          React.createElement(
+            'div',
+            { className: 'col-sm-3' },
+            React.createElement(
+              'button',
+              { className: 'btn btn-success', value: 'divide', onClick: this.onClick },
+              '/ Divide'
+            )
+          )
+        ),
+        React.createElement('br', null),
+        React.createElement(
+          'div',
+          { className: 'row' },
+          React.createElement(
+            'div',
+            { className: 'col-sm-9' },
+            React.createElement(InputBox, { inputType: 'number', placeholder: 'Result', ref: 'inputResult', readOnly: 'true' })
+          ),
+          React.createElement(
+            'div',
+            { className: 'col-sm-3' },
+            React.createElement(
+              'button',
+              { onClick: this.clear, className: 'btn btn-danger' },
+              'Clear'
+            )
+          )
+        )
+      )
+    );
+  }
+});
+
+module.exports = SimpleCalculator;
+
+},{"./Heading.jsx":159,"./InputBox.jsx":160,"react":158}],162:[function(require,module,exports){
+var React = require('react');
 var ReactDOM = require('react-dom');
 
-},{"react":158,"react-dom":29}]},{},[159]);
+var SimpleCalculator = require('./components/SimpleCalculator.jsx');
+
+ReactDOM.render(React.createElement(SimpleCalculator, null), document.getElementById('main'));
+
+},{"./components/SimpleCalculator.jsx":161,"react":158,"react-dom":29}]},{},[162]);

@@ -3,7 +3,7 @@ var React = require('react');
 var InputBox = React.createClass({
   getInitialState : function() {
     if(this.props.inputType === "number") {
-      return { value: 0 }
+      return { value: "" }
     } else {
       return { value: "" }
     }
@@ -13,7 +13,7 @@ var InputBox = React.createClass({
   },
   render : function() {
     return (
-      <input type={this.props.inputType} className="form-control" onChange={this.onChange} placeholder={this.props.placeholder} value={this.state.value} />
+      <input type={this.props.inputType} className="form-control" onChange={this.onChange} placeholder={this.props.placeholder} value={this.state.value} readOnly = {this.props.readOnly} />
     );
   }
 });
